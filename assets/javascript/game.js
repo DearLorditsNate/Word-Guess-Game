@@ -1,6 +1,23 @@
 /*
+ ________________________________
+|                                |
+|      Hangman | Star Wars       |
+|________________________________|
+
+*/
+
+/*
 ======================================
-Hangman | Star Wars
+Global Variables
+======================================
+*/
+
+// Word Bank
+var wordBank = ["droid", "hoth", "tauntaun"];
+
+/*
+======================================
+Event Listeners
 ======================================
 */
 
@@ -9,12 +26,25 @@ Hangman | Star Wars
 //     document.write("Let's get started");
 // }
 
-// Word Bank
-var wordBank = ["droid", "hoth", "tauntaun"];
-
-// Listen for Key Press | A-Z Only
-document.onkeyup = function(event) {
+// Listen for Key Press (A-Z Only) | Store Letter in Lowercase
+document.onkeyup = function (event) {
     if (event.keyCode >= 65 && event.keyCode <= 90) {
-        alert("input was a-z");
+        var code = String.fromCharCode(event.keyCode).toLowerCase();
+        console.log(code);
     };
-}
+};
+
+/*
+======================================
+Function Declarations
+======================================
+*/
+
+
+/*
+======================================
+Function Calls
+======================================
+*/
+
+// keyPressed();
