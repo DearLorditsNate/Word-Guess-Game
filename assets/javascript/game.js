@@ -51,6 +51,9 @@ document.onkeyup = function() {
         // Display Letters Pressed
         displayLettersPressed(keyPressed, lettersGuessed);
 
+        // Reveal Letters
+        revealLetters(randomWord, letterPressed);
+
         // Subtract Guess
         subtractGuess();
     };
@@ -95,6 +98,34 @@ function subtractGuess() {
         guessesRemaining.innerHTML -= 1;
     } else {
         alert("Game over!");
+    };
+};
+
+// Reveal letters if guessed correctly **strings are immutable** need to replace the string with a whole new string...
+// function revealLetters(word, letter) {
+//     for (var i = 0; i < word.length; i++) {
+//         if (letter == word.charAt(i)) {
+//             // replace space with letter
+//             blankSpaces.innerHTML.charAt(i).textContent = letter;
+//         };
+//     };
+// };
+
+function revealLetters(word, letter) {
+    for (var i = 0; i < word.length; i++) {
+        if (letter == word.charAt(i)) {
+            blankSpaces.innerHTML = "";
+            debugger;
+            for ( var i = 0; i < word.length; i++) {
+                debugger;
+                if (letter != word.charAt(i)) {
+                    blankSpaces.innerHTML += " _ ";
+                    debugger;
+                } else {
+                    blankSpaces.innerHTML += word.charAt(i);
+                };
+            };
+        };
     };
 };
 
