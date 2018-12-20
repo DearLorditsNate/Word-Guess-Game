@@ -2,3 +2,9 @@ body {
     text-align: center;
     margin: 50px auto;
 }
+
+h1,
+h2,
+p {
+    padding: 10px;
+}
