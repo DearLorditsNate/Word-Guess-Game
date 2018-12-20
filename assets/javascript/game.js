@@ -35,6 +35,8 @@ var guessesRemaining = document.getElementById("guesses-remaining");
 // // New Div
 // var newDiv = document.createElement("div");
 
+var newSpan = document.createElement("span");
+
 /*
 ======================================
 Event Listeners
@@ -85,10 +87,13 @@ function getRandomWord(arr) {
     console.log(randomWord);
 };
 
-// Print number of blank spaces equal to random word from word bank
+// Print number of blank spaces equal to random word from word bank | creates a unique span with a unique numbered ID for each space
 function printBlankSpaces(str) {
     for (var i = 0; i < str.length; i++) {
-        blankSpaces.innerHTML += " _ ";
+        newSpan = document.createElement("span");
+        newSpan.setAttribute("id", (i));
+        newSpan.innerHTML = " _ ";
+        blankSpaces.appendChild(newSpan);
     };
 };
 
@@ -101,28 +106,15 @@ function subtractGuess() {
     };
 };
 
-// Reveal letters if guessed correctly **strings are immutable** need to replace the string with a whole new string...
-// function revealLetters(word, letter) {
-//     for (var i = 0; i < word.length; i++) {
-//         if (letter == word.charAt(i)) {
-//             // replace space with letter
-//             blankSpaces.innerHTML.charAt(i).textContent = letter;
-//         };
-//     };
-// };
-
+// Reveal letters if guessed correctly
 function revealLetters(word, letter) {
     for (var i = 0; i < word.length; i++) {
         if (letter == word.charAt(i)) {
-            blankSpaces.innerHTML = "";
-            debugger;
-            for ( var i = 0; i < word.length; i++) {
-                debugger;
-                if (letter != word.charAt(i)) {
-                    blankSpaces.innerHTML += " _ ";
-                    debugger;
-                } else {
-                    blankSpaces.innerHTML += word.charAt(i);
+            // blankSpaces.innerHTML = "";
+            for (var i = 0; i < word.length; i++) {
+                if (letter == word.charAt(i)) {
+                    var toReplace = document.getElementById((i));
+                    toReplace.innerHTML = letter;
                 };
             };
         };
