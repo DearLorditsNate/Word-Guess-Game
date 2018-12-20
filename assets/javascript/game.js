@@ -23,6 +23,8 @@ var letterPressed;
 // HTML Elements
 var lettersGuessed = document.getElementById("letters-guessed");
 
+lettersGuessed.innerHTML = " ";
+
 // Blank spaces equal to random word choice from word bank array
 var blankSpaces = document.getElementById("current-word");
 
@@ -32,9 +34,7 @@ var randomWord;
 // Guesses remaining
 var guessesRemaining = document.getElementById("guesses-remaining");
 
-// // New Div
-// var newDiv = document.createElement("div");
-
+// Spans to use for blank space generation
 var newSpan = document.createElement("span");
 
 /*
@@ -51,7 +51,7 @@ document.onkeyup = function() {
         console.log(letterPressed);
 
         // Display Letters Pressed
-        displayLettersPressed(keyPressed, lettersGuessed);
+        displayLettersPressed(letterPressed, lettersGuessed);
 
         // Reveal Letters
         revealLetters(randomWord, letterPressed);
@@ -68,18 +68,21 @@ Function Declarations
 */
 
 // Display String of Letters Pressed
-function displayLettersPressed(letter) {
-    lettersGuessed.innerHTML += letter;
-};
+// function displayLettersPressed(letter) {
+//     lettersGuessed.innerHTML += letter;
+// };
 
-// // working on a  version of of displayLettersPressed that doesn't allow repeat letter presses...
-// function displayLettersPressed(letter, str) {
-//     for (var i = 0; i < str.length; i++) {
-//         if (str.charAt(i) != letter) {
-//             lettersGuessed.innerHTML += letter;
-//         }
-//     }
-// }
+// working on a version of of displayLettersPressed that doesn't allow repeat letter presses...
+function displayLettersPressed(letter, str) {
+    // lettersGuessed.innerHTML += " ";
+    for (var i = 0; i < str.length; i++) {
+        if (str.charAt(i) != letter) {
+            lettersGuessed.innerHTML += letter;
+        } else {
+            lettersGuessed.innerHTML += "";
+        };
+    };
+};
 
 // Choose a random item from the Word Bank array
 function getRandomWord(arr) {
@@ -110,7 +113,6 @@ function subtractGuess() {
 function revealLetters(word, letter) {
     for (var i = 0; i < word.length; i++) {
         if (letter == word.charAt(i)) {
-            // blankSpaces.innerHTML = "";
             for (var i = 0; i < word.length; i++) {
                 if (letter == word.charAt(i)) {
                     var toReplace = document.getElementById((i));
