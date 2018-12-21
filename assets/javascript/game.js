@@ -13,17 +13,16 @@ Global Variables
 */
 
 // Word Bank
-var wordBank = ["droid",
-                "hoth",
-                "tauntaun"];
+var wordBank = ["droid", "hoth", "tauntaun"];
 
 // Letter Pressed by User
 var letterPressed;
 
 // HTML Elements
-var lettersGuessed = document.getElementById("letters-guessed");
+// var lettersGuessed = document.getElementById("letters-guessed");
 
-lettersGuessed.innerHTML = " ";
+// Array to push guessed letters to
+var lettersGuessed = [""];
 
 // Blank spaces equal to random word choice from word bank array
 var blankSpaces = document.getElementById("current-word");
@@ -45,6 +44,7 @@ Event Listeners
 
 // Listen for Key Press (A-Z Only) | Store Letter in Lowercase
 document.onkeyup = function() {
+    // Separate this out into a helper function?
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         var keyPressed = String.fromCharCode(event.keyCode).toLowerCase();
         letterPressed = keyPressed;
@@ -73,15 +73,31 @@ Function Declarations
 // };
 
 // working on a version of of displayLettersPressed that doesn't allow repeat letter presses...
-function displayLettersPressed(letter, str) {
-    // lettersGuessed.innerHTML += " ";
-    for (var i = 0; i < str.length; i++) {
-        if (str.charAt(i) != letter) {
-            lettersGuessed.innerHTML += letter;
-        } else {
-            lettersGuessed.innerHTML += "";
+// function displayLettersPressed(letter, str) {
+//     // console.log(str.innerHTML);
+//     var toString = str.innerHTML;
+//     for (var i = 0; i < toString.length; i++) {
+//         if (toString.charAt(i) === letter) {
+//             // lettersGuessed.innerHTML += letter;
+//             return false;
+//         } else {
+//             // lettersGuessed.innerHTML += "";
+//             lettersGuessed.innerHTML += letter;
+//         };
+//         // console.log(letterGuessed.innerHTML);
+//         // console.log(toString);
+//     };
+// };
+
+
+// it prints the letter one time for each match it DOESNT find. so if the array is 5 long, it finds 5 non-matches and prints the letter 5 times
+function displayLettersPressed(letter, list) {
+    for (var i = 0; i < list.length; i++) {
+        if (list[i] !== letter) {
+            lettersGuessed.push(letter);
         };
     };
+    console.log(lettersGuessed);
 };
 
 // Choose a random item from the Word Bank array
@@ -103,7 +119,7 @@ function printBlankSpaces(str) {
 // Subtract guess from guesses remaining
 function subtractGuess() {
     if (guessesRemaining.innerHTML > 0) {
-        guessesRemaining.innerHTML -= 1;
+        guessesRemaining.innerHTML--;
     } else {
         alert("Game over!");
     };
