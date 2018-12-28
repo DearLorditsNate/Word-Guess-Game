@@ -22,7 +22,7 @@ var letterPressed;
 // var lettersGuessed = document.getElementById("letters-guessed");
 
 // Array to push guessed letters to
-var lettersGuessed = [""];
+var lettersGuessed = [];
 
 // Blank spaces equal to random word choice from word bank array
 var blankSpaces = document.getElementById("current-word");
@@ -90,14 +90,36 @@ Function Declarations
 // };
 
 
-// it prints the letter one time for each match it DOESNT find. so if the array is 5 long, it finds 5 non-matches and prints the letter 5 times
+// it pushes the letter one time for each match it DOESNT find. so if the array is 5 long, it finds 5 non-matches and pushes the letter 5 times
+// function displayLettersPressed(letter, list) {
+//     for (var i = 0; i < list.length; i++) {
+//         if (list[i] === letter) {
+//             break;
+//         } else {
+//             lettersGuessed.push(letter);
+//         };
+//     };
+//     console.log(lettersGuessed);
+// };
+
 function displayLettersPressed(letter, list) {
-    for (var i = 0; i < list.length; i++) {
-        if (list[i] !== letter) {
-            lettersGuessed.push(letter);
-        };
+    // Push letter pressed into the array
+    lettersGuessed.push(letter);
+
+    // Cycle through that array to remove duplicates
+    // (and if it has to remove a duplicate, don't subract a guess)
+
+    var i; 
+    var result = [];
+    var obj = {};
+    for (i = 0; i < list.length; i++) {
+        obj[list[i]] = 0;
     };
-    console.log(lettersGuessed);
+    for (i in obj) {
+        result.push(i);
+    };
+    console.log(result);
+    document.getElementById("letters-guessed").innerText = result;
 };
 
 // Choose a random item from the Word Bank array
@@ -116,7 +138,7 @@ function printBlankSpaces(str) {
     };
 };
 
-// Subtract guess from guesses remaining
+// Subtract one guess from guesses remaining
 function subtractGuess() {
     if (guessesRemaining.innerHTML > 0) {
         guessesRemaining.innerHTML--;
@@ -147,6 +169,8 @@ Function Calls
 */
 
 // console.log(code);
+
+// Put the two function calls below into a "start game" function, so they are only run when that one is activated--say by pressing a button that says "new word" or "start game"
 
 getRandomWord(wordBank);
 
