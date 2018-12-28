@@ -18,9 +18,6 @@ var wordBank = ["droid", "hoth", "tauntaun"];
 // Letter Pressed by User
 var letterPressed;
 
-// HTML Elements
-// var lettersGuessed = document.getElementById("letters-guessed");
-
 // Array to push guessed letters to
 var lettersGuessed = [];
 
@@ -56,8 +53,13 @@ document.onkeyup = function() {
         // Reveal Letters
         revealLetters(randomWord, letterPressed);
 
+        // Has won?
+        hasWon(randomWord);
+
         // Subtract Guess
-        subtractGuess();
+        // subtractGuess();
+
+
     };
 };
 
@@ -67,41 +69,7 @@ Function Declarations
 ======================================
 */
 
-// Display String of Letters Pressed
-// function displayLettersPressed(letter) {
-//     lettersGuessed.innerHTML += letter;
-// };
-
-// working on a version of of displayLettersPressed that doesn't allow repeat letter presses...
-// function displayLettersPressed(letter, str) {
-//     // console.log(str.innerHTML);
-//     var toString = str.innerHTML;
-//     for (var i = 0; i < toString.length; i++) {
-//         if (toString.charAt(i) === letter) {
-//             // lettersGuessed.innerHTML += letter;
-//             return false;
-//         } else {
-//             // lettersGuessed.innerHTML += "";
-//             lettersGuessed.innerHTML += letter;
-//         };
-//         // console.log(letterGuessed.innerHTML);
-//         // console.log(toString);
-//     };
-// };
-
-
-// it pushes the letter one time for each match it DOESNT find. so if the array is 5 long, it finds 5 non-matches and pushes the letter 5 times
-// function displayLettersPressed(letter, list) {
-//     for (var i = 0; i < list.length; i++) {
-//         if (list[i] === letter) {
-//             break;
-//         } else {
-//             lettersGuessed.push(letter);
-//         };
-//     };
-//     console.log(lettersGuessed);
-// };
-
+// Display list of letters pressed, not allowing for duplicate key presses
 function displayLettersPressed(letter, list) {
     // Push letter pressed into the array
     lettersGuessed.push(letter);
@@ -112,14 +80,19 @@ function displayLettersPressed(letter, list) {
     var i; 
     var result = [];
     var obj = {};
+    var pushedLetter;
     for (i = 0; i < list.length; i++) {
         obj[list[i]] = 0;
     };
     for (i in obj) {
         result.push(i);
+        pushedLetter = true;
     };
+    // if (pushedLetter) {
+    //     subtractGuess();
+    // }
     console.log(result);
-    document.getElementById("letters-guessed").innerText = result;
+    document.getElementById("letters-guessed").innerText = result.join(" ").toUpperCase();
 };
 
 // Choose a random item from the Word Bank array
@@ -161,6 +134,28 @@ function revealLetters(word, letter) {
     };
 };
 
+// Determine if user has won
+function hasWon(word) {
+    var currentStatus = "";
+    for (var i = 0; i < word.length; i++) {
+        currentStatus += document.getElementById(i).innerHTML;
+    };
+    if (currentStatus === word) {
+        alert("You've won!");
+        newGame();
+    };
+};
+
+// Start New Game
+function newGame() {
+    document.getElementById("current-word").innerHTML = "";
+    document.getElementById("letters-guessed").innerHTML = "";
+    lettersGuessed = [];
+    guessesRemaining = document.getElementById("guesses-remaining");
+    blankSpaces = document.getElementById("current-word");
+    getRandomWord(wordBank);
+    printBlankSpaces(randomWord);
+};
 
 /*
 ======================================
@@ -170,9 +165,8 @@ Function Calls
 
 // console.log(code);
 
-// Put the two function calls below into a "start game" function, so they are only run when that one is activated--say by pressing a button that says "new word" or "start game"
+// Initialize first round
+newGame();
 
-getRandomWord(wordBank);
 
-printBlankSpaces(randomWord);
 
