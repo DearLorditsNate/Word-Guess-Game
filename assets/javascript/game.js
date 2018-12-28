@@ -13,7 +13,7 @@ Global Variables
 */
 
 // Word Bank
-var wordBank = ["droid", "hoth", "tauntaun"];
+var wordBank = ["DROID", "HOTH", "TAUNTAUN"];
 
 // Letter Pressed by User
 var letterPressed;
@@ -39,11 +39,11 @@ Event Listeners
 ======================================
 */
 
-// Listen for Key Press (A-Z Only) | Store Letter in Lowercase
+// Listen for Key Press (A-Z Only) | Store Letter in Uppercase
 document.onkeyup = function() {
     // Separate this out into a helper function?
     if (event.keyCode >= 65 && event.keyCode <= 90) {
-        var keyPressed = String.fromCharCode(event.keyCode).toLowerCase();
+        var keyPressed = String.fromCharCode(event.keyCode).toUpperCase();
         letterPressed = keyPressed;
         console.log(letterPressed);
 
@@ -57,7 +57,7 @@ document.onkeyup = function() {
         hasWon(randomWord);
 
         // Subtract Guess
-        // subtractGuess();
+        subtractGuess();
 
 
     };
@@ -86,7 +86,7 @@ function displayLettersPressed(letter, list) {
     };
     for (i in obj) {
         result.push(i);
-        pushedLetter = true;
+        // pushedLetter = true;
     };
     // if (pushedLetter) {
     //     subtractGuess();
@@ -117,6 +117,7 @@ function subtractGuess() {
         guessesRemaining.innerHTML--;
     } else {
         alert("Game over!");
+        newGame();
     };
 };
 
@@ -141,8 +142,9 @@ function hasWon(word) {
         currentStatus += document.getElementById(i).innerHTML;
     };
     if (currentStatus === word) {
-        alert("You've won!");
-        newGame();
+        if (confirm("You've won! Start a new game?")) {
+            newGame();
+        };
     };
 };
 
@@ -151,7 +153,7 @@ function newGame() {
     document.getElementById("current-word").innerHTML = "";
     document.getElementById("letters-guessed").innerHTML = "";
     lettersGuessed = [];
-    guessesRemaining = document.getElementById("guesses-remaining");
+    document.getElementById("guesses-remaining").innerHTML = "6";
     blankSpaces = document.getElementById("current-word");
     getRandomWord(wordBank);
     printBlankSpaces(randomWord);
