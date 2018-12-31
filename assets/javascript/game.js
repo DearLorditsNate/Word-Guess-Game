@@ -63,6 +63,11 @@ document.onkeyup = function() {
     };
 };
 
+// Event listener for New Game Button
+document.getElementById("new-game-button").onclick = function() {
+    newGame();
+}
+
 /*
 ======================================
 Function Declarations
@@ -141,22 +146,32 @@ function hasWon(word) {
     for (var i = 0; i < word.length; i++) {
         currentStatus += document.getElementById(i).innerHTML;
     };
+    // if (currentStatus === word) {
+    //     if (confirm("You've won! Start a new game?")) {
+    //         newGame();
+    //     };
+    // };
+
     if (currentStatus === word) {
-        if (confirm("You've won! Start a new game?")) {
-            newGame();
-        };
+        // var button = document.getElementById("new-game-button");
+        document.getElementById("new-game-button").style.visibility = "visible";
     };
 };
 
 // Start New Game
 function newGame() {
+    // Reset Current Word
     document.getElementById("current-word").innerHTML = "";
-    document.getElementById("letters-guessed").innerHTML = "";
-    lettersGuessed = [];
-    document.getElementById("guesses-remaining").innerHTML = "6";
     blankSpaces = document.getElementById("current-word");
     getRandomWord(wordBank);
     printBlankSpaces(randomWord);
+    // Reset Letters Guessed
+    document.getElementById("letters-guessed").innerHTML = "";
+    lettersGuessed = [];
+    // Reset Guesses Remaining
+    document.getElementById("guesses-remaining").innerHTML = "6";
+    // Hide New Game Button
+    document.getElementById("new-game-button").style.visibility = "hidden";
 };
 
 /*
