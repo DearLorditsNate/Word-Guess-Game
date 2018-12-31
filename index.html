@@ -13,21 +13,32 @@
 </head>
 <body>
     <!-- Game Body -->
-    <h1>Press Any Key to Get Started!</h1>
+    <div class="container">
+        <h1>Press Any Letter to Get Started!</h1>
 
-    <h2>Current Word</h2>
-        <div id="current-word"></div>
+        <h2>Current Word</h2>
+            <div id="current-word"></div>
 
-    <h2>Number of Guesses Remaining</h2>
-        <p id="guesses-remaining">6</p>
+        <div class="guesses-container">
 
-    <h2>Letters Already Guessed</h2>
-        <p id="letters-guessed"></p>
+            <div class="left-col">
+                <h2>Number of Guesses Remaining</h2>
+                <p id="guesses-remaining">60</p>
+            </div>
+            
+            <div class="right-col">
+                <h2>Letters Already Guessed</h2>
+                <p id="letters-guessed">Your Guessed Letters Will Go Here</p>
+            </div>
 
-    <h2 id="wins">Wins:</h2>
-    <h2 id="losses">Losses:</h2>
+        </div>
 
-    <button id="new-game-button" type="button">Start New Round</button>
+        <h2 id="wins">Wins:</h2>
+        <h2 id="losses">Losses:</h2>
+
+        <button id="new-game-button" type="button">Start New Round</button>
+
+    </div>
 
     <!-- JS -->
     <script src="assets/javascript/game.js"></script>

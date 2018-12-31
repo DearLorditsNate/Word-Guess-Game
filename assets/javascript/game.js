@@ -126,8 +126,9 @@ function subtractGuess() {
         guessesRemaining.innerHTML--;
     } else {
         alert("Game over!");
-        losses++;
         document.getElementById("new-game-button").style.visibility = "visible";
+        losses++;
+        document.getElementById("losses").innerText = "Losses: " + losses;
     };
 };
 
@@ -169,7 +170,7 @@ function newGame() {
     document.getElementById("letters-guessed").innerHTML = "";
     lettersGuessed = [];
     // Reset Guesses Remaining
-    document.getElementById("guesses-remaining").innerHTML = "6";
+    document.getElementById("guesses-remaining").innerHTML = "60";
     // Hide New Game Button
     document.getElementById("new-game-button").style.visibility = "hidden";
 };
