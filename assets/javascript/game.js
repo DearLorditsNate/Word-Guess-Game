@@ -33,6 +33,10 @@ var guessesRemaining = document.getElementById("guesses-remaining");
 // Spans to use for blank space generation
 var newSpan = document.createElement("span");
 
+// Win/Loss Counters
+var wins = 0;
+var losses = 0;
+
 /*
 ======================================
 Event Listeners
@@ -66,7 +70,7 @@ document.onkeyup = function() {
 // Event listener for New Game Button
 document.getElementById("new-game-button").onclick = function() {
     newGame();
-}
+};
 
 /*
 ======================================
@@ -122,7 +126,8 @@ function subtractGuess() {
         guessesRemaining.innerHTML--;
     } else {
         alert("Game over!");
-        newGame();
+        losses++;
+        document.getElementById("new-game-button").style.visibility = "visible";
     };
 };
 
@@ -146,15 +151,10 @@ function hasWon(word) {
     for (var i = 0; i < word.length; i++) {
         currentStatus += document.getElementById(i).innerHTML;
     };
-    // if (currentStatus === word) {
-    //     if (confirm("You've won! Start a new game?")) {
-    //         newGame();
-    //     };
-    // };
-
     if (currentStatus === word) {
-        // var button = document.getElementById("new-game-button");
         document.getElementById("new-game-button").style.visibility = "visible";
+        wins++;
+        document.getElementById("wins").innerText = "Wins: " + wins;
     };
 };
 
