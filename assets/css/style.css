@@ -21,48 +21,40 @@ p {
     padding: 10px;
 }
 
- /* 
+/* 
 ===================================
 Background Colors for formatting
 ===================================
 */
 
-h1 {
-    background-color: blue;
+h1,
+.blue {
+    /* background-color: blue; */
 }
 
 h2 {
-    background-color: red;
+    /* background-color: red; */
 }
 
-p {
-    background-color: yellow;
+p,
+.yellow {
+    /* background-color: yellow; */
 }
 
 span {
-    background-color: orange;
+    /* background-color: orange; */
     /* padding: 10px; */
     font-size: 24px;
 }
 
- /* 
+.container {
+    /* background-color: purple; */
+    min-height: 100%;
+    padding: 250px 10px 0 10px;
+}
+
+/* 
 ===================================
-Containers
+Background Image
 ===================================
 */
-
-.container {
-    max-width: 66.6%;
-    margin: auto;
-}
-
-.guesses-container {
-    /* display: inline-block; */
-    margin: auto;
-}
-
-.left-col,
-.right-col {
-    /* max-width: 50%; */
-    display: inline-block;
-}

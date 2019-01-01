@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Word Guess | Nate Micinski</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
@@ -14,27 +17,41 @@
 <body>
     <!-- Game Body -->
     <div class="container">
-        <h1>Press Any Letter to Get Started!</h1>
+        <div class="row p-2 border">
+            <div class="col">
+                <h1 class="text-center">Press Any Letter to Get Started!</h1>
+            </div>
+        </div>
 
-        <h2>Current Word</h2>
-            <div id="current-word"></div>
+        <div class="row border mt-3 p-2 text-center justify-content">
+            <div class="col-12">
+                <h2 class="mb-2">Current Word:</h2>
+            </div>
+            <div class="col-12">
+                <div id="current-word" class="yellow"></div>
+            </div>
+        </div>
 
-        <div class="guesses-container">
-
-            <div class="left-col">
-                <h2>Number of Guesses Remaining</h2>
+        <div class="row border mt-3 p-2 text-center">
+            <div class="col">
+                <h2>Number of Guesses Remaining:</h2>
                 <p id="guesses-remaining">60</p>
             </div>
             
-            <div class="right-col">
-                <h2>Letters Already Guessed</h2>
+            <div class="col">
+                <h2>Letters Already Guessed:</h2>
                 <p id="letters-guessed">Your Guessed Letters Will Go Here</p>
             </div>
-
         </div>
 
-        <h2 id="wins">Wins:</h2>
-        <h2 id="losses">Losses:</h2>
+        <div class="row border mt-3 p-2 text-center">
+            <div class="col">
+                <h2 id="wins" class="">Wins:</h2>
+            </div>
+            <div class="col">
+                <h2 id="losses" class="">Losses:</h2>
+            </div>
+        </div>
 
         <button id="new-game-button" type="button">Start New Round</button>
 
@@ -42,5 +59,9 @@
 
     <!-- JS -->
     <script src="assets/javascript/game.js"></script>
+
+    <!-- Bootstrap JS -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>
