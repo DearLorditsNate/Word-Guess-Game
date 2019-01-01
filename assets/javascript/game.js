@@ -13,10 +13,14 @@ Global Variables
 */
 
 // Word Bank
-var wordBank = ["DROID", "HOTH", "TAUNTAUN"];
+var wordBank = ["DROID",
+                "HOTH",
+                "TAUNTAUN",];
 
 // Clue Bank
-var clueBank = ["Their kind aren't welcome here", "Snow day", "They smell terrible, but they'll keep you alive"]
+var clueBank = ["Their kind aren't welcome here.",
+                "Snow day!",
+                "They may smell bad kid, but they'll keep you warm."];
 
 // Letter Pressed by User
 var letterPressed;
@@ -68,7 +72,11 @@ document.onkeyup = function() {
 };
 
 // Event listener for New Game Button
-document.getElementById("new-game-button").onclick = function() {
+document.getElementById("win-button").onclick = function() {
+    newGame();
+};
+
+document.getElementById("loss-button").onclick = function () {
     newGame();
 };
 
@@ -124,12 +132,12 @@ function printBlankSpaces(str) {
 // Print Clue
 function printClue(word, clues) {
     var index = wordBank.indexOf(word);
-    var print = document.getElementById("clue");
+    var clue = document.getElementById("clue");
     for (var i = 0; i < clues.length; i++) {
         if (index === i) {
             newSpan = document.createElement("span");
             newSpan.innerHTML = clues[i];
-            print.appendChild(newSpan);
+            clue.appendChild(newSpan);
         };
     };
 };
@@ -139,8 +147,7 @@ function subtractGuess() {
     if (guessesRemaining.innerHTML > 0) {
         guessesRemaining.innerHTML--;
     } else {
-        alert("Game over!");
-        document.getElementById("new-game-button").style.visibility = "visible";
+        document.getElementById("loss-button").style.visibility = "visible";
         losses++;
         document.getElementById("losses").innerText = "Losses: " + losses;
     };
@@ -167,7 +174,7 @@ function hasWon(word) {
         currentStatus += document.getElementById(i).innerHTML;
     };
     if (currentStatus === word) {
-        document.getElementById("new-game-button").style.visibility = "visible";
+        document.getElementById("win-button").style.visibility = "visible";
         wins++;
         document.getElementById("wins").innerText = "Wins: " + wins;
     };
@@ -180,14 +187,18 @@ function newGame() {
     blankSpaces = document.getElementById("current-word");
     getRandomWord(wordBank);
     printBlankSpaces(randomWord);
+    // Reset and print new clue
+    document.getElementById("clue").innerHTML = "";
     printClue(randomWord, clueBank);
     // Reset Letters Guessed
     document.getElementById("letters-guessed").innerHTML = "";
     lettersGuessed = [];
     // Reset Guesses Remaining
     document.getElementById("guesses-remaining").innerHTML = "60";
-    // Hide New Game Button
-    document.getElementById("new-game-button").style.visibility = "hidden";
+    // Hide Win Button
+    document.getElementById("win-button").style.visibility = "hidden";
+    // Hide Loss Button
+    document.getElementById("loss-button").style.visibility = "hidden";
 };
 
 /*

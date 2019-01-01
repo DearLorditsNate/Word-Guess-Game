@@ -58,7 +58,11 @@ h1 {
 h2,
 p,
 span {
-    font-size: 40px;
+    font-size: 30px;
+}
+
+h2 {
+    text-transform: uppercase;
 }
 
 span {
@@ -75,4 +79,21 @@ p {
 
 #wins {
     color: blue;
+}
+
+/* 
+===================================
+Button
+===================================
+*/
+
+#win-button,
+#loss-button {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    margin-top: -100px; /* Negative half of height. */
+    margin-left: -200px; /* Negative half of width. */
 }
