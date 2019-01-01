@@ -194,7 +194,7 @@ function newGame() {
     document.getElementById("letters-guessed").innerHTML = "";
     lettersGuessed = [];
     // Reset Guesses Remaining
-    document.getElementById("guesses-remaining").innerHTML = "60";
+    document.getElementById("guesses-remaining").innerHTML = "6";
     // Hide Win Button
     document.getElementById("win-button").style.visibility = "hidden";
     // Hide Loss Button

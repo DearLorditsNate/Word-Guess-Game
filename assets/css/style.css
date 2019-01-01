@@ -74,11 +74,11 @@ p {
 }
 
 #losses {
-    color: rgb(255, 23, 23);
+    color: #CE0C2C;
 }
 
 #wins {
-    color: blue;
+    color: #17AF0A;
 }
 
 /* 
