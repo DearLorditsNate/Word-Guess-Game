@@ -17,36 +17,11 @@ body {
 
 /* 
 ===================================
-Background Colors for formatting
-===================================
-*/
-
-h1,
-.blue {
-    /* background-color: blue; */
-}
-
-h2 {
-    /* background-color: red; */
-}
-
-p,
-.yellow {
-    /* background-color: yellow; */
-}
-
-span {
-    /* background-color: orange; */
-}
-
-/* 
-===================================
 Container
 ===================================
 */
 
 .container {
-    /* background-color: purple; */
     min-height: 100%;
     padding: 40px 0;
 }
@@ -59,7 +34,6 @@ Background Image
 
 body {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/9/98/Andromeda_Galaxy_%28with_h-alpha%29.jpg");
-    /* background-image: url("assets/images/x-wing.png"); */
     background-repeat: no-repeat;
     background-position: center;
     background-color: #cccccc;
@@ -78,7 +52,6 @@ body {
 
 h1 {
     font-family: 'Notable', sans-serif;
-    /* color: white; */
     font-size: 50px;
 }
 
@@ -90,4 +63,16 @@ span {
 
 span {
     /* font-size: 24px; */
+}
+
+p {
+
+}
+
+#losses {
+    color: rgb(255, 23, 23);
+}
+
+#wins {
+    color: blue;
 }
