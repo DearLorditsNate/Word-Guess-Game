@@ -15,14 +15,14 @@ Global Variables
 // Word Bank
 var wordBank = ["DROID", "HOTH", "TAUNTAUN"];
 
+// Clue Bank
+var clueBank = ["Their kind aren't welcome here", "Snow day", "They smell terrible, but they'll keep you alive"]
+
 // Letter Pressed by User
 var letterPressed;
 
 // Array to push guessed letters to
 var lettersGuessed = [];
-
-// Blank spaces equal to random word choice from word bank array
-var blankSpaces = document.getElementById("current-word");
 
 // Random Word Choice from Word Bank Array
 var randomWord;
@@ -112,11 +112,25 @@ function getRandomWord(arr) {
 
 // Print number of blank spaces equal to random word from word bank | creates a unique span with a unique numbered ID for each space
 function printBlankSpaces(str) {
+    var blankSpaces = document.getElementById("current-word");
     for (var i = 0; i < str.length; i++) {
         newSpan = document.createElement("span");
         newSpan.setAttribute("id", (i));
         newSpan.innerHTML = " _ ";
         blankSpaces.appendChild(newSpan);
+    };
+};
+
+// Print Clue
+function printClue(word, clues) {
+    var index = wordBank.indexOf(word);
+    var print = document.getElementById("clue");
+    for (var i = 0; i < clues.length; i++) {
+        if (index === i) {
+            newSpan = document.createElement("span");
+            newSpan.innerHTML = clues[i];
+            print.appendChild(newSpan);
+        };
     };
 };
 
@@ -166,6 +180,7 @@ function newGame() {
     blankSpaces = document.getElementById("current-word");
     getRandomWord(wordBank);
     printBlankSpaces(randomWord);
+    printClue(randomWord, clueBank);
     // Reset Letters Guessed
     document.getElementById("letters-guessed").innerHTML = "";
     lettersGuessed = [];
