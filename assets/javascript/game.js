@@ -144,7 +144,7 @@ function printClue(word, clues) {
 
 // Subtract one guess from guesses remaining
 function subtractGuess() {
-    if (guessesRemaining.innerHTML > 0) {
+    if (guessesRemaining.innerHTML > 1) {
         guessesRemaining.innerHTML--;
     } else {
         document.getElementById("loss-button").style.visibility = "visible";
