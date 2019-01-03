@@ -7,6 +7,11 @@
 */
 
 /*
+To-do:
+    - Add more words/clues
+*/
+
+/*
 ======================================
 Global Variables
 ======================================
@@ -41,6 +46,9 @@ var newSpan = document.createElement("span");
 var wins = 0;
 var losses = 0;
 
+// Stores boolean of "has a new letter been pressed"
+var wrongGuess = true;
+
 /*
 ======================================
 Event Listeners
@@ -58,20 +66,27 @@ document.onkeyup = function() {
         // Display Letters Pressed
         displayLettersPressed(letterPressed, lettersGuessed);
 
+        // Reset wrongGuess
+        wrongGuess = true;
+
         // Reveal Letters
         revealLetters(randomWord, letterPressed);
 
         // Has won?
         hasWon(randomWord);
 
-        // Subtract Guess
-        subtractGuess();
+        // // Subtract Guess
+        // subtractGuess();
+
+        if (wrongGuess) {
+            subtractGuess();
+        };
 
 
     };
 };
 
-// Event listener for New Game Button
+// Event listener for New Game Buttons
 document.getElementById("win-button").onclick = function() {
     newGame();
 };
@@ -161,6 +176,8 @@ function revealLetters(word, letter) {
                 if (letter == word.charAt(i)) {
                     var toReplace = document.getElementById((i));
                     toReplace.innerHTML = letter;
+                    // Update newLetterPressed boolean for subtractGuess
+                    wrongGuess = false;
                 };
             };
         };
@@ -206,8 +223,6 @@ function newGame() {
 Function Calls
 ======================================
 */
-
-// console.log(code);
 
 // Initialize first round
 newGame();
