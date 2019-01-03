@@ -1,9 +1,3 @@
-/*
-To-do:
-    - Button styles
-    - Border styles
-*/
-
 /* 
 ===================================
 Universal Styles
@@ -71,14 +65,6 @@ h2 {
     text-transform: uppercase;
 }
 
-span {
-    /* font-size: 24px; */
-}
-
-p {
-
-}
-
 #losses {
     color: #CE0C2C;
 }
@@ -102,4 +88,13 @@ Button
     height: 200px;
     margin-top: -100px; /* Negative half of height. */
     margin-left: -200px; /* Negative half of width. */
+    border: 5px solid black;
+}
+
+#win-button {
+    background-color: #17AF0A;
+}
+
+#loss-button {
+    background-color: #CE0C2C;
 }

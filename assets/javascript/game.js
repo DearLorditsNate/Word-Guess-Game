@@ -9,6 +9,7 @@
 /*
 To-do:
     - Add more words/clues
+    - Don't subract guess if repeat wrong letter is pressed
 */
 
 /*
@@ -49,6 +50,8 @@ var losses = 0;
 // Stores boolean of "has a new letter been pressed"
 var wrongGuess = true;
 
+// var newLetter = true;
+
 /*
 ======================================
 Event Listeners
@@ -63,6 +66,9 @@ document.onkeyup = function() {
         letterPressed = keyPressed;
         console.log(letterPressed);
 
+        // Reset newLetter
+        // newLetter = false;
+
         // Display Letters Pressed
         displayLettersPressed(letterPressed, lettersGuessed);
 
@@ -76,9 +82,7 @@ document.onkeyup = function() {
         hasWon(randomWord);
 
         // // Subtract Guess
-        // subtractGuess();
-
-        if (wrongGuess) {
+        if (wrongGuess || newLetter) {
             subtractGuess();
         };
 
@@ -107,24 +111,26 @@ function displayLettersPressed(letter, list) {
     lettersGuessed.push(letter);
 
     // Cycle through that array to remove duplicates
-    // (and if it has to remove a duplicate, don't subract a guess)
-
     var i; 
     var result = [];
     var obj = {};
-    var pushedLetter;
     for (i = 0; i < list.length; i++) {
         obj[list[i]] = 0;
     };
     for (i in obj) {
         result.push(i);
-        // pushedLetter = true;
     };
-    // if (pushedLetter) {
-    //     subtractGuess();
-    // }
     console.log(result);
     document.getElementById("letters-guessed").innerText = result.join(" ").toUpperCase();
+    // for (var j = 0; j < result.length; j++) {
+    //     if (letter === result[j]) {
+    //         newLetter = false;
+    //     } else {
+    //         newLetter = true;
+    //     };
+    // };
+    // Used to determine subtracting a guess
+    // newLetter = false;
 };
 
 // Choose a random item from the Word Bank array
@@ -176,7 +182,7 @@ function revealLetters(word, letter) {
                 if (letter == word.charAt(i)) {
                     var toReplace = document.getElementById((i));
                     toReplace.innerHTML = letter;
-                    // Update newLetterPressed boolean for subtractGuess
+                    // Update wrongGuess boolean for subtractGuess
                     wrongGuess = false;
                 };
             };
