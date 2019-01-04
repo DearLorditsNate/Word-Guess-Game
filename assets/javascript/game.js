@@ -15,12 +15,26 @@ Global Variables
 // Word Bank
 var wordBank = ["DROID",
                 "HOTH",
-                "TAUNTAUN",];
+                "TAUNTAUN",
+                "PARSECS",
+                "CHEWBACCA",
+                "CARBONITE",
+                "DEATHSTAR",
+                "MIDICHLORIANS",
+                "NABOO",
+                "LIGHTSABER"];
 
 // Clue Bank
 var clueBank = ["Their kind aren't welcome here.",
                 "Snow day!",
-                "They may smell bad kid, but they'll keep you warm."];
+                "They may smell bad kid, but they'll keep you warm.",
+                "The Millennium Falcon only needs 12 of these to make the Kessel run.",
+                "Don't want your arms ripped out of their sockets? I suggest you let him win...",
+                "You might have a hard time seeing for a while after being exposed to this.",
+                "That's no moon...",
+                "Anakin's levels are off the charts.",
+                "Padme's home planet.",
+                "Once refered to by Anakin as a 'laser sword.' Why is anybody's guess."];
 
 // Letter Pressed by user
 var letterPressed;
@@ -78,7 +92,7 @@ document.onkeyup = function() {
         // Has won?
         hasWon(randomWord);
 
-        // Subtract Guess
+        // Subtract Guess if wrong guess and not a duplicate wrong letter press
         if (wrongGuess && newLetter) {
             subtractGuess();
         };
