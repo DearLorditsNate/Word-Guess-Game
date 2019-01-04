@@ -50,7 +50,7 @@ var losses = 0;
 // Stores boolean of "has a new letter been pressed"
 var wrongGuess = true;
 
-// var newLetter = true;
+var newLetter = true;
 
 /*
 ======================================
@@ -67,7 +67,10 @@ document.onkeyup = function() {
         console.log(letterPressed);
 
         // Reset newLetter
-        // newLetter = false;
+        newLetter = true;
+
+        // Check for same letter press
+        sameLetter(letterPressed, lettersGuessed);
 
         // Display Letters Pressed
         displayLettersPressed(letterPressed, lettersGuessed);
@@ -75,14 +78,20 @@ document.onkeyup = function() {
         // Reset wrongGuess
         wrongGuess = true;
 
+
+
+
+
         // Reveal Letters
         revealLetters(randomWord, letterPressed);
+
+
 
         // Has won?
         hasWon(randomWord);
 
         // // Subtract Guess
-        if (wrongGuess || newLetter) {
+        if (wrongGuess && newLetter) {
             subtractGuess();
         };
 
@@ -120,7 +129,8 @@ function displayLettersPressed(letter, list) {
     for (i in obj) {
         result.push(i);
     };
-    console.log(result);
+    console.log("result: " + result);
+    console.log("lettersGuessed: " + lettersGuessed);
     document.getElementById("letters-guessed").innerText = result.join(" ").toUpperCase();
     // for (var j = 0; j < result.length; j++) {
     //     if (letter === result[j]) {
@@ -201,6 +211,16 @@ function hasWon(word) {
         wins++;
         document.getElementById("wins").innerText = "Wins: " + wins;
     };
+};
+
+// Don't subtract score for pressing the same wrong letter
+function sameLetter(letter, list) {
+    for (var i = 0; i < list.length; i++) {
+        if (letter == list[i]) {
+            newLetter = false;
+        };
+    };
+    console.log("Im a test");
 };
 
 // Start New Game
