@@ -7,12 +7,6 @@
 */
 
 /*
-To-do:
-    - Add more words/clues
-    - Don't subract guess if repeat wrong letter is pressed
-*/
-
-/*
 ======================================
 Global Variables
 ======================================
@@ -28,7 +22,7 @@ var clueBank = ["Their kind aren't welcome here.",
                 "Snow day!",
                 "They may smell bad kid, but they'll keep you warm."];
 
-// Letter Pressed by User
+// Letter Pressed by user
 var letterPressed;
 
 // Array to push guessed letters to
@@ -47,9 +41,10 @@ var newSpan = document.createElement("span");
 var wins = 0;
 var losses = 0;
 
-// Stores boolean of "has a new letter been pressed"
+// Stores boolean of "has a wrong guess been pressed"
 var wrongGuess = true;
 
+// Stores boolean of "has a new letter been pressed"
 var newLetter = true;
 
 /*
@@ -60,7 +55,6 @@ Event Listeners
 
 // Listen for Key Press (A-Z Only) | Store Letter in Uppercase
 document.onkeyup = function() {
-    // Separate this out into a helper function?
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         var keyPressed = String.fromCharCode(event.keyCode).toUpperCase();
         letterPressed = keyPressed;
@@ -78,24 +72,16 @@ document.onkeyup = function() {
         // Reset wrongGuess
         wrongGuess = true;
 
-
-
-
-
         // Reveal Letters
         revealLetters(randomWord, letterPressed);
-
-
 
         // Has won?
         hasWon(randomWord);
 
-        // // Subtract Guess
+        // Subtract Guess
         if (wrongGuess && newLetter) {
             subtractGuess();
         };
-
-
     };
 };
 
@@ -119,7 +105,7 @@ function displayLettersPressed(letter, list) {
     // Push letter pressed into the array
     lettersGuessed.push(letter);
 
-    // Cycle through that array to remove duplicates
+    // Put only new letters into an object
     var i; 
     var result = [];
     var obj = {};
@@ -129,18 +115,9 @@ function displayLettersPressed(letter, list) {
     for (i in obj) {
         result.push(i);
     };
-    console.log("result: " + result);
-    console.log("lettersGuessed: " + lettersGuessed);
+    console.log(result);
+    // Replace innerHTML with string of object contents
     document.getElementById("letters-guessed").innerText = result.join(" ").toUpperCase();
-    // for (var j = 0; j < result.length; j++) {
-    //     if (letter === result[j]) {
-    //         newLetter = false;
-    //     } else {
-    //         newLetter = true;
-    //     };
-    // };
-    // Used to determine subtracting a guess
-    // newLetter = false;
 };
 
 // Choose a random item from the Word Bank array
@@ -175,16 +152,18 @@ function printClue(word, clues) {
 
 // Subtract one guess from guesses remaining
 function subtractGuess() {
+    // Subtracts a guess if there are guesses remaining
     if (guessesRemaining.innerHTML > 1) {
         guessesRemaining.innerHTML--;
     } else {
+        // If no guesses remaining, triggers loss button and adds a loss
         document.getElementById("loss-button").style.visibility = "visible";
         losses++;
         document.getElementById("losses").innerText = "Losses: " + losses;
     };
 };
 
-// Reveal letters if guessed correctly
+// Reveal letters if guessed correctly, will replace all instances of that letter
 function revealLetters(word, letter) {
     for (var i = 0; i < word.length; i++) {
         if (letter == word.charAt(i)) {
@@ -202,10 +181,12 @@ function revealLetters(word, letter) {
 
 // Determine if user has won
 function hasWon(word) {
+    // Creates string out of revealed letters
     var currentStatus = "";
     for (var i = 0; i < word.length; i++) {
         currentStatus += document.getElementById(i).innerHTML;
     };
+    // If the string of revealed letters matches the word from the Word Bank array, triggers win button and updates wins
     if (currentStatus === word) {
         document.getElementById("win-button").style.visibility = "visible";
         wins++;
@@ -220,7 +201,6 @@ function sameLetter(letter, list) {
             newLetter = false;
         };
     };
-    console.log("Im a test");
 };
 
 // Start New Game
@@ -228,7 +208,9 @@ function newGame() {
     // Reset Current Word
     document.getElementById("current-word").innerHTML = "";
     blankSpaces = document.getElementById("current-word");
+    // Get new random word
     getRandomWord(wordBank);
+    // Pring new blank spaces
     printBlankSpaces(randomWord);
     // Reset and print new clue
     document.getElementById("clue").innerHTML = "";
